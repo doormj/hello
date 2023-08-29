@@ -21,6 +21,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<package name="co.yeadam.hello1" />
+		<package name="co.yeadam.project" />
 	</mappers>
 </configuration>

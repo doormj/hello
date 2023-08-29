@@ -52,7 +52,6 @@ public class MemberMenu {
 			case 6:
 				b = true;
 				System.out.println("홈 가기");
-				
 				break;
 			}
 			
