@@ -1,7 +1,5 @@
 package co.yeadam.project.membership.serviceImpl;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
 import co.yeadam.project.common.DataSource;
@@ -14,8 +12,8 @@ public class MembershipServiceImpl implements MembershipService {
 	private MembershipMapper map = sqlSession.getMapper(MembershipMapper.class);
 
 	@Override
-	public List<MembershipVO> membershipSelectList() {
-		return map.membershipSelectList();
+	public MembershipVO membershipSelectList(MembershipVO vo) {
+		return map.membershipSelectList(vo);
 	}
 
 	@Override
@@ -29,13 +27,23 @@ public class MembershipServiceImpl implements MembershipService {
 	}
 
 	@Override
-	public int membershipUpdate(MembershipVO vo) {
-		return map.membershipUpdate(vo);
+	public int membershipDelete(MembershipVO vo) {
+		return map.membershipDelete(vo);
 	}
 
 	@Override
-	public int membershipDelete(MembershipVO vo) {
-		return map.membershipDelete(vo);
+	public int membershipPassUpdate(MembershipVO vo) {
+		return map.membershipPassUpdate(vo);
+	}
+
+	@Override
+	public int membershipTelUpdate(MembershipVO vo) {
+		return map.membershipTelUpdate(vo);
+	}
+
+	@Override
+	public int membershipMailUpdate(MembershipVO vo) {
+		return map.membershipMailUpdate(vo);
 	}
 
 }

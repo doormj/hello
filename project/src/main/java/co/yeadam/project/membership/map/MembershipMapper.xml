@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yeadam.project.membership.map.MembershipMapper">
 	<select id="membershipSelectList" resultType="co.yeadam.project.membership.service.MembershipVO">
-		SELECT * FROM MEMBERSHIP;
+		SELECT USER_ID, USER_NAME, USER_TEL, USER_JOIN_DATE, USER_MAIL
+		FROM MEMBERSHIP
+		WHERE USER_ID = #{userId}
 	</select>
 
 	<select id="membershipSelect" resultType="co.yeadam.project.membership.service.MembershipVO">
@@ -13,15 +15,35 @@
 	</select>
 
 	<insert id="membershipInsert" parameterType="co.yeadam.project.membership.service.MembershipVO">
-	INSERT INTO MEMBERSHIP(USER_ID, USER_PASSWORD, USER_NAME, USER_TEL, USER_MAIL)
-	VALUES(#{userId}, #{userPassword}, #{userName}, #{userTel}, #{userMail})
+		INSERT INTO MEMBERSHIP(USER_ID, USER_PASSWORD, USER_NAME, USER_TEL, USER_MAIL)
+		VALUES(#{userId}, #{userPassword}, #{userName}, #{userTel}, #{userMail})
 	</insert>
 
-	<update id="membershipUpdate" parameterType="co.yeadam.project.membership.service.MembershipVO">
-
+	<update id="membershipPassUpdate" parameterType="co.yeadam.project.membership.service.MembershipVO">
+		UPDATE MEMBERSHIP
+		<set>
+			<if test="userPassword != null">USER_PASSWORD = #{userPassword}</if>
+		</set>
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<update id="membershipTelUpdate" parameterType="co.yeadam.project.membership.service.MembershipVO">
+		UPDATE MEMBERSHIP
+		<set>
+			<if test="userTel != null">USER_TEL = #{userTel}</if>
+		</set>
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<update id="membershipMailUpdate" parameterType="co.yeadam.project.membership.service.MembershipVO">
+		UPDATE MEMBERSHIP
+	<set>
+		<if test="userMail != null">USER_MAIL = #{userMail}</if>	
+	</set>
+		WHERE USER_ID = #{userId}
 	</update>
 
 	<delete id="membershipDelete" parameterType="co.yeadam.project.membership.service.MembershipVO">
-
+		DELETE FROM MEMBERSHIP WHERE USER_ID = #{userId}
 	</delete>
 </mapper>

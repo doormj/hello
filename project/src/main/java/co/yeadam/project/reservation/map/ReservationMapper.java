@@ -10,4 +10,5 @@ public interface ReservationMapper {
 	int reservationInsert(ReservationVO vo);			// 여행객 등록
 	int reservationUpdate(ReservationVO vo);			// 여행 정보 수정
 	int reservationDelete(ReservationVO vo);			// 여행 정보 삭제
+	
 }

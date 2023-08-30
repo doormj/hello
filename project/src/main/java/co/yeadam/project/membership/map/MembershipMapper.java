@@ -5,9 +5,11 @@ import java.util.List;
 import co.yeadam.project.membership.service.MembershipVO;
 
 public interface MembershipMapper {
-	List<MembershipVO> membershipSelectList();
+	MembershipVO membershipSelectList(MembershipVO vo);
 	MembershipVO membershipSelect(MembershipVO vo);
 	int membershipInsert(MembershipVO vo);
-	int membershipUpdate(MembershipVO vo);
+	int membershipPassUpdate(MembershipVO vo);
+	int membershipTelUpdate(MembershipVO vo);
+	int membershipMailUpdate(MembershipVO vo);
 	int membershipDelete(MembershipVO vo);
 }

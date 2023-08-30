@@ -5,24 +5,29 @@
 		SELECT * FROM RESERVATION
 	</select>
 	<select id="reservationSelect" resultType="co.yeadam.project.reservation.service.ReservationVO">
-		SELECT LOCATION, USER_NAME, USER_TEL, HOTEL_NAME, RESERVE_START_DATE, RESERVAION_FEE FROM RESERVATION, 
-		RESERVE_LAST_DATE, RESERVE_TERM
+		SELECT LOCATION, USER_NAME, USER_TEL, HOTEL_NAME, RESERVE_START_DATE, RESERVATION_FEE, RESERVE_LAST_DATE, RESERVE_TERM
+		FROM RESERVATION
 		WHERE RESERVE_NUM = #{reserveNum}
 	</select>
 	
 	<insert id="reservationInsert" parameterType="co.yeadam.project.reservation.service.ReservationVO">
-		INSERT INTO RESERVATION(LOCATION, HOTEL_NAME, RESERVE_START_DATE, 
-		USER_TEL, RESERVATION_FEE, USER_NAME, RESERVE_NUM, RESERVE_LAST_DATE, RESERVE_TERM)
-		VALUES(#{location}, #{hotelName}, #{reserveStartDate}, 
-		#{userTel}, #{reservationFee}, #{userName}, NUMBERING.nextval, #{reserveLastDate}, #{reserveTerm});
+		<selectKey keyProperty = "reserveNum" order="AFTER" resultType="String">
+		SELECT MAX(RESERVE_NUM) FROM RESERVATION
+		</selectKey>
+		INSERT INTO RESERVATION(LOCATION, HOTEL_NAME, RESERVE_START_DATE, USER_TEL, RESERVATION_FEE, 
+		USER_NAME, RESERVE_NUM, RESERVE_LAST_DATE, RESERVE_TERM)
+		VALUES(#{location}, #{hotelName}, #{reserveStartDate}, #{userTel}, #{reservationFee}, 
+		#{userName}, NUMBERING.nextval, #{reserveLastDate}, #{reserveTerm})
 	</insert>
 	
 	<update id="reservationUpdate" parameterType="co.yeadam.project.reservation.service.ReservationVO">
+		<selectKey keyProperty = "reserveNum" order="AFTER" resultType="String">
+		SELECT MAX(RESERVE_NUM) FROM RESERVATION
+		</selectKey>
 		UPDATE RESERVATION
 		<set>
-			<if test="location != null">location = #{location}</if>
-			<if test="hotelName != null">hotel_name = #{hotelName}</if>
-			<if test="reserveDate != null">reserve_date = #{reserveStartDate}</if>
+			<if test="reserveStartDate != null">reserve_date = #{reserveStartDate}</if>
+			<if test="reserveLastDate != null">reserve_date = #{reserveLastDate}</if>
 			<if test="reservationFee != 0">reservation_fee = #{reservationFee}</if>
 		</set>
 		WHERE RESERVE_NUM = #{reserveNum}
