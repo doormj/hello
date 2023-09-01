@@ -13,6 +13,7 @@ public class MembershipVO {
 	private String userTel;
 	private Date userJoinDate;
 	private String userMail;
+	private String userKey;
 	
 	
 	public String membershipInfo() {
@@ -23,6 +24,11 @@ public class MembershipVO {
 					"휴대폰 번호: " + userTel + "\n" + //
 					"가입 일자: " + sdf.format(userJoinDate) + "\n" + //
 					"이메일: " + userMail + "\n";
+		return str;
+	}
+	
+	public String showId() {
+		String str = "유저 아이디: " + userId ;
 		return str;
 	}
 }

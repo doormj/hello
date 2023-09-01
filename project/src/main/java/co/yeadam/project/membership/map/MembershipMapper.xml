@@ -13,10 +13,17 @@
 			AND USER_PASSWORD = #{userPassword}
 		</if>
 	</select>
+	
+	<select id="membershipIdSelect" resultType="co.yeadam.project.membership.service.MembershipVO">
+		SELECT USER_ID
+		FROM MEMBERSHIP
+		WHERE USER_TEL = #{userTel}
+		AND USER_MAIL = #{userMail}
+	</select>
 
 	<insert id="membershipInsert" parameterType="co.yeadam.project.membership.service.MembershipVO">
-		INSERT INTO MEMBERSHIP(USER_ID, USER_PASSWORD, USER_NAME, USER_TEL, USER_MAIL)
-		VALUES(#{userId}, #{userPassword}, #{userName}, #{userTel}, #{userMail})
+		INSERT INTO MEMBERSHIP(USER_ID, USER_PASSWORD, USER_NAME, USER_TEL, USER_MAIL, USER_KEY)
+		VALUES(#{userId}, #{userPassword}, #{userName}, #{userTel}, #{userMail}, #{userKey})
 	</insert>
 
 	<update id="membershipPassUpdate" parameterType="co.yeadam.project.membership.service.MembershipVO">
@@ -46,4 +53,14 @@
 	<delete id="membershipDelete" parameterType="co.yeadam.project.membership.service.MembershipVO">
 		DELETE FROM MEMBERSHIP WHERE USER_ID = #{userId}
 	</delete>
+	
+	<update id="membershipFindPass" parameterType="co.yeadam.project.membership.service.MembershipVO">
+		UPDATE MEMBERSHIP
+			<set>
+				<if test="userPassword != null">USER_PASSWORD = #{userPassword}</if>
+			</set>
+		WHERE USER_ID = #{userId}
+		AND USER_MAIL = #{userMail}
+		AND USER_KEY = #{userKey}
+	</update>
 </mapper>

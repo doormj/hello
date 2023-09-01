@@ -46,4 +46,14 @@ public class MembershipServiceImpl implements MembershipService {
 		return map.membershipMailUpdate(vo);
 	}
 
+	@Override
+	public MembershipVO membershipIdSelect(MembershipVO vo) {
+		return map.membershipIdSelect(vo);
+	}
+
+	@Override
+	public int membershipFindPass(MembershipVO vo) {
+		return map.membershipFindPass(vo);
+	}
+
 }

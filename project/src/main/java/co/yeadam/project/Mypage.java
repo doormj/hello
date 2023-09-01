@@ -52,7 +52,7 @@ public class Mypage {
 
 	
 
-	private void userDelete() {
+	private void userDelete() { //회원탈퇴
 		MainMenu main = new MainMenu();
 		String id = main.loginId;
 		MembershipVO vo = new MembershipVO();
@@ -70,7 +70,7 @@ public class Mypage {
 		main.run();
 	}
 
-	private void membershipUpdate() {
+	private void membershipUpdate() { //내정보 수정
 		MainMenu main = new MainMenu();
 		String id = main.loginId;
 		MembershipVO vo = new MembershipVO();
@@ -133,7 +133,7 @@ public class Mypage {
 		
 	}
 
-	private void myList() {
+	private void myList() { //내정보 목록
 		MainMenu main = new MainMenu();
 		String id = main.loginId;
 		MembershipVO vo = new MembershipVO();

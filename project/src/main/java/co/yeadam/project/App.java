@@ -9,6 +9,6 @@ public class App
     	Scanner sc = new Scanner(System.in);
     	MainMenu menus = new MainMenu();
     	menus.run();
-
+    	
     }
 }

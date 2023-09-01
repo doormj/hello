@@ -56,7 +56,7 @@ public class ReservationMenu {
 		}
 	}
 
-	private void reserveDelete() {
+	private void reserveDelete() { //예약 취소
 		ReservationVO vo = new ReservationVO();
 		System.out.println("======== 4. 예약 취소 하기 ========");
 		System.out.println("취소할 예약번호를 입력하세요.");
@@ -71,7 +71,7 @@ public class ReservationMenu {
 		}
 	}
 
-	private void reserveSelectList() {
+	private void reserveSelectList() { //예약 정보 확인
 		ReservationVO vo = new ReservationVO();
 		System.out.println("======== 2. 예약 정보 확인 ========");
 		System.out.println("조회할 예약번호를 입력하세요.");
@@ -86,7 +86,7 @@ public class ReservationMenu {
 		}
 	}
 
-	private void reserveInsert() {
+	private void reserveInsert() { //예약하기
 		ReservationVO vo = new ReservationVO();
 		System.out.println("======== 1. 예약지 선택 및 예약 ========");
 		System.out.println("예약자명을 입력하세요");
